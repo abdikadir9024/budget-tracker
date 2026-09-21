@@ -1,60 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Budget Tracker</title>
-  <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Main Container -->
-  <div class="app-container">
-
-    <!-- Part 1: Page Header -->
-    <header id="main-header">
-      <h1>My Budget Tracker</h1>
-      <p class="subheading">Track your income and expenses in one place.</p>
+    <header class="main-header">
+        <!-- Task 3: Logo Image -->
+        <img src="https://via.placeholder.com/40" alt="Budget Tracker Logo" width="40" id="app-logo">
+        <h1>Personal Budget Tracker</h1>
     </header>
 
-    <!-- Part 2: Add Expense Section -->
-    <section class="card" id="add-expense-section">
-      <h2>Add Expense</h2>
-      <form class="expense-form">
-        <div class="form-group">
-          <label for="expense-name">Expense Name</label>
-          <input type="text" id="expense-name" placeholder="e.g., Groceries">
-        </div>
+    <main class="container">
 
-        <div class="form-group">
-          <label for="expense-amount">Amount ($)</label>
-          <input type="number" id="expense-amount" placeholder="0.00">
-        </div>
+        <!-- Task 4: Interactive Collapsible Section -->
+        <section class="instructions-section">
+            <details>
+                <summary>How to use this tracker</summary>
+                <p>Use the form below to enter your daily expenses. Select the relevant category, enter the amount and date, then click <strong>Add Expense</strong> to submit your entry.</p>
+            </details>
+        </section>
 
-        <div class="form-group">
-          <label for="expense-category">Category</label>
-          <select id="expense-category">
-            <option value="" disabled selected>Select category</option>
-            <option value="food">Food & Dining</option>
-            <option value="rent">Rent & Utilities</option>
-            <option value="transport">Transport</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+        <!-- Task 2: Form Upgrade -->
+        <section class="add-expense-section">
+            <h2>Add New Expense</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-name">Expense Name:</label>
+                    <input type="text" id="expense-name" placeholder="e.g., Groceries" required>
+                </div>
 
-        <button type="button" class="btn">Add Item</button>
-      </form>
-    </section>
+                <div class="form-group">
+                    <label for="expense-amount">Amount ($):</label>
+                    <input type="number" id="expense-amount" placeholder="0.00" step="0.01" required>
+                </div>
 
-    <!-- Part 3: Expenses List Placeholder Section -->
-    <section class="card" id="expenses-list-section">
-      <h2>Your Expenses</h2>
-      <p class="placeholder-text">No expenses yet.</p>
-    </section>
+                <div class="form-group">
+                    <label for="expense-category">Category:</label>
+                    <!-- Select with 5 options -->
+                    <select id="expense-category" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Food">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
 
-  </div>
+                <div class="form-group">
+                    <label for="expense-date">Date:</label>
+                    <input type="date" id="expense-date" required>
+                </div>
+
+                <!-- Button with correct type -->
+                <button type="button" id="add-btn">Add Expense</button>
+            </form>
+        </section>
+
+        <!-- Task 1: Expense Table -->
+        <section class="expenses-section">
+            <h2>Recent Expenses</h2>
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Weekly Groceries</td>
+                        <td>$120.50</td>
+                        <td>Food</td>
+                        <td>2026-09-15</td>
+                    </tr>
+                    <tr>
+                        <td>Bus Pass</td>
+                        <td>$45.00</td>
+                        <td>Transport</td>
+                        <td>2026-09-16</td>
+                    </tr>
+                    <tr>
+                        <td>Apartment Rent</td>
+                        <td>$850.00</td>
+                        <td>Rent</td>
+                        <td>2026-09-01</td>
+                    </tr>
+                    <tr>
+                        <td>Movie Night</td>
+                        <td>$25.00</td>
+                        <td>Entertainment</td>
+                        <td>2026-09-18</td>
+                    </tr>
+                    <tr>
+                        <td>Utility Bill</td>
+                        <td>$65.30</td>
+                        <td>Other</td>
+                        <td>2026-09-19</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Task 3: Multimedia Video Embed -->
+        <section class="media-section">
+            <h2>Budgeting Tips</h2>
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube-nocookie.com/embed/sVKQn2I4HDM" 
+                title="YouTube video player - Budgeting Tips" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </section>
+
+    </main>
 
 </body>
 </html>
