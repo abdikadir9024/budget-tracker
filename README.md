@@ -1,41 +1,45 @@
-# Week 2 Budget Tracker Upgrade
+# Budget Tracker - Visual Design & Styling
 
-## Project Description
-This project is an upgraded version of the Week 1 Budget Tracker application. It enhances the structural layout using HTML5 semantic elements, adds structured tabular data display, upgrades form input controls, incorporates multimedia elements (images and embedded iframe video), and utilizes advanced CSS selectors for improved visual styling and interactivity.
-
----
-
-## Summary of Technical Additions
-
-### 1. Expense Table (`<table>`)
-* Replaced placeholder text with a semantic table structure using `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>`.
-* Included 5 hardcoded sample rows displaying expense details (Name, Amount, Category, Date).
-* Styled via CSS using `border-collapse: collapse`, cell padding, custom header colors, and zebra striping (`tr:nth-child(even)`).
-
-### 2. Upgraded Form (`<form>`)
-* Wrapped all input fields inside a `<form>` container.
-* Replaced the text input for category with a `<select>` dropdown menu containing 5 options (*Food, Transport, Rent, Entertainment, Other*).
-* Added explicit `id` attributes (`id="expense-name"`, `id="expense-amount"`, `id="expense-category"`, `id="expense-date"`) to all controls for future JavaScript binding.
-* Added a submission control (`<button type="button">Add Expense</button>`).
-
-### 3. Multimedia Integration
-* **Header Icon:** Added an `<img>` tag with `src`, `alt`, and `width` attributes next to the main heading.
-* **Video Player:** Embedded a YouTube video explaining budgeting techniques using an `<iframe>` container configured with height, width, title, and frame border properties.
-
-### 4. Interactivity & Micro-Interactions
-* **Collapsible Accordion:** Implemented `<details>` and `<summary>` tags to create an expandable "How to use this tracker" instruction guide.
-* **Hover State:** Applied `:hover` rules on table rows (`tr:hover`) to provide visual feedback as users inspect row data.
-* **Pointer State:** Configured `cursor: pointer` on form buttons and interactive summary elements.
-
-### 5. Advanced CSS Selectors Applied
-1. **Descendant Selector (`.expenses-section td`):** Applies targeted font sizes to table data cells located within the expenses container.
-2. **Direct Child Selector (`.add-expense-section > h2`):** Targets only top-level section headers directly under the form section.
-3. **Position Pseudo-class (`tbody tr:nth-child(even)` & `tbody tr:first-child`):** Applies alternating zebra background shades to even-numbered rows and highlights the primary entry.
-4. **Negation Pseudo-class (`input:not([type="button"])`):** Applies background formatting to text, number, and date input elements while excluding buttons.
-5. **Focus State Selector (`input:focus, select:focus`):** Adds a dynamic glow and border highlight when a user focuses on input or drop-down elements.
+A clean, responsive, and visually accessible Budget Tracker user interface built as part of the Week 3 Visual Design Challenge. This phase focuses entirely on CSS enhancement without modifying existing HTML structure or adding JavaScript functionality.
 
 ---
 
-## Setup & Viewing Instructions
-1. Clone this repository to your local machine.
-2. Open `index.html` directly in any web browser (Chrome, Firefox, Edge, Safari).
+## 🎨 Visual Design System
+
+### 1. Color Palette
+The application utilizes a cohesive, accessible color scheme based on a professional modern blue-and-slate palette:
+- **Primary Brand Color (`#2563eb`):** Applied to the main title, section borders, button highlights, and table headers.
+- **Background Slate (`#f8fafc`):** Serves as a neutral canvas to elevate card components.
+- **Card Background (`#ffffff`):** Creates clear visual contrast for main content sections.
+- **Primary Text (`#0f172a`):** High-contrast slate color for optimal legibility.
+- **Muted Text (`#64748b`):** Used for form input labels to establish typographic hierarchy.
+
+---
+
+### 2. Custom Typography
+Custom typography was implemented using **Google Fonts**:
+- **Headings (`Poppins`):** A bold, geometric sans-serif font applied to `<h1>` and `<h2>` elements to create impactful headers.
+- **Body & Inputs (`Inter`):** A neutral sans-serif font optimized for high readability across table cells, body text, form fields, and buttons.
+
+---
+
+### 3. CSS Box Model Implementation
+To enhance visual organization, each core section is styled as an independent **Card Component**:
+- **Margins (`margin-bottom: 1.5rem`):** Ensures consistent vertical spacing between sections.
+- **Padding (`padding: 1.75rem`):** Creates breathing room inside container walls.
+- **Borders & Border-Radius (`12px`):** Softens rectangular sections for a modern, approachable card interface.
+- **Box Shadows:** Adds subtle elevation to separate sections visually from the page background.
+
+---
+
+### 4. Table & Form Design
+- **Expense Form:** Features vertical stack layouts with prominent field labels, unified border styling, and focus-state outlines for accessibility.
+- **Expense Table:** Includes explicit cell padding, distinct header styling using the primary brand color tint, horizontal grid borders, and alternating row backgrounds (`nth-child(even)`) for enhanced scanning clarity.
+
+---
+
+## 📁 Repository File Structure
+```text
+├── index.html   # Main HTML structure (Unchanged structure + Google Fonts link)
+├── style.css    # Complete CSS design system stylesheet
+└── README.md    # Documentation file
