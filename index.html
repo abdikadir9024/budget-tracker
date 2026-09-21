@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Budget Tracker</title>
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Part 1: Page Header -->
+    <header id="main-header">
+      <h1>My Budget Tracker</h1>
+      <p class="subheading">Track your income and expenses in one place.</p>
+    </header>
+
+    <!-- Part 2: Add Expense Section -->
+    <section class="card" id="add-expense-section">
+      <h2>Add Expense</h2>
+      <form class="expense-form">
+        <div class="form-group">
+          <label for="expense-name">Expense Name</label>
+          <input type="text" id="expense-name" placeholder="e.g., Groceries">
+        </div>
+
+        <div class="form-group">
+          <label for="expense-amount">Amount ($)</label>
+          <input type="number" id="expense-amount" placeholder="0.00">
+        </div>
+
+        <div class="form-group">
+          <label for="expense-category">Category</label>
+          <select id="expense-category">
+            <option value="" disabled selected>Select category</option>
+            <option value="food">Food & Dining</option>
+            <option value="rent">Rent & Utilities</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn">Add Item</button>
+      </form>
+    </section>
+
+    <!-- Part 3: Expenses List Placeholder Section -->
+    <section class="card" id="expenses-list-section">
+      <h2>Your Expenses</h2>
+      <p class="placeholder-text">No expenses yet.</p>
+    </section>
+
+  </div>
+
+</body>
+</html>
