@@ -1,207 +1,422 @@
 /* ==========================================================================
-   1. COLOR PALETTE & GLOBAL CSS VARIABLES
+   3. CSS Custom Properties / Design Tokens
    ========================================================================== */
 :root {
-  /* Brand Colors */
-  --primary: #2563eb;          /* Vibrant Blue for buttons/headers */
-  --primary-hover: #1d4ed8;    /* Darker Blue for hover states */
-  --primary-light: #eff6ff;    /* Light tint for subtle highlights */
+  /* Brand & Colors */
+  --brand-color: #4f46e5;       /* Primary Indigo */
+  --brand-hover: #4338ca;
+  --accent-color: #10b981;      /* Emerald Green for positive/savings */
+  --warning-color: #ef4444;     /* Red for over-budget */
   
-  /* Neutral Colors */
-  --bg-main: #f8fafc;          /* Soft slate background */
-  --card-bg: #ffffff;          /* White card background */
-  --text-primary: #0f172a;     /* Dark slate for high readability text */
-  --text-muted: #64748b;       /* Slate grey for secondary text/labels */
-  --border-color: #e2e8f0;     /* Light grey borders */
-  --table-stripe: #f8fafc;     /* Subtle alternating table row color */
-  
-  /* Status/Accent Colors */
-  --accent-red: #ef4444;       /* Accent color for action states */
-  
-  /* Typography */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Surface & Background Colors */
+  --bg-color: #f8fafc;          /* Main Page Background */
+  --surface-color: #ffffff;     /* Card & Sidebar Background */
+  --surface-hover: #f1f5f9;
+  --border-color: #e2e8f0;
 
-  /* Elevation & Borders */
+  /* Typography Colors */
+  --text-primary: #0f172a;      /* Dark Slate */
+  --text-secondary: #64748b;    /* Cool Gray */
+  --text-on-brand: #ffffff;
+
+  /* Shadows & Radius */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --radius-lg: 16px;
+  --radius-md: 10px;
   --radius-sm: 6px;
-  --radius-md: 12px;
-  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================
-   2. GLOBAL RESETS & TYPOGRAPHY
+   Stretch Goal: Dark Theme (Automatic OS Preference)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #6366f1;
+    --brand-hover: #818cf8;
+    --accent-color: #34d399;
+    --warning-color: #f87171;
+
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --surface-hover: #334155;
+    --border-color: #334155;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+  }
+}
+
+/* ==========================================================================
+   Base Styles & Reset
    ========================================================================== */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--bg-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
   color: var(--text-primary);
-  line-height: 1.6;
-  padding: 2rem 1rem;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Headings */
-h1, h2, h3 {
-  font-family: var(--font-heading);
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: 1.875rem;
-  font-weight: 700;
-  text-align: center;
-  color: var(--primary);
-}
-
-h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1.25rem;
-  border-bottom: 2px solid var(--primary-light);
-  padding-bottom: 0.5rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ==========================================================================
-   3. BOX MODEL & CARD LAYOUTS
+   2. Modern CSS Grid Layout (Overall Dashboard Structure)
    ========================================================================== */
-/* Distinct "Card" sections using margin, padding, border, and border-radius */
-header,
-section,
-.card-section {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--box-shadow);
-}
-
-/* ==========================================================================
-   4. FORM STYLING
-   ========================================================================== */
-form {
+.dashboard-container {
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
 }
 
-.form-group {
+/* ==========================================================================
+   1 & 2. Sidebar Component (Flexbox Structure)
+   ========================================================================== */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
 }
 
-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-muted);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px 24px 12px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"],
-select,
-textarea {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  background-color: #fff;
-  color: var(--text-primary);
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.brand-icon {
+  font-size: 1.5rem;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+.brand h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-color);
 }
 
-/* Buttons */
-button,
-input[type="submit"] {
-  font-family: var(--font-body);
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: var(--primary);
-  border: none;
   border-radius: var(--radius-sm);
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: var(--transition-fast);
 }
 
-button:hover,
-input[type="submit"]:hover {
-  background-color: var(--primary-hover);
+.nav-item:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
 }
 
-button:active,
-input[type="submit"]:active {
-  transform: translateY(1px);
+.nav-item.active {
+  background-color: var(--brand-color);
+  color: var(--text-on-brand);
+}
+
+.sidebar-footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--brand-color);
+  color: var(--text-on-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
 /* ==========================================================================
-   5. TABLE STYLING
+   1 & 2. Header Component (Flexbox Alignment)
    ========================================================================== */
-.table-container {
-  overflow-x: auto; /* Ensures responsiveness on mobile devices */
+.header {
+  grid-area: header;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+.header-left h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-color);
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.notification-btn {
+  position: relative;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition-fast);
+}
+
+.notification-btn:hover {
+  background-color: var(--surface-hover);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--warning-color);
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   1 & 2. Main Area Grid & Flex Cards
+   ========================================================================== */
+.main-content {
+  grid-area: main;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  align-content: start;
+}
+
+/* Individual Category Cards */
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  
+  /* 5. Micro-interactions Preparation */
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  cursor: pointer;
+}
+
+/* 5. Card Hover & Keyboard Focus Animations (≤250ms requirement) */
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--brand-color);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background-color: var(--bg-color);
+}
+
+.card-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
   border-radius: var(--radius-sm);
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+.card-body h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.card-amount {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 4px 0 12px 0;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.percentage {
+  font-weight: 600;
+}
+
+.percentage.positive { color: var(--text-secondary); }
+.percentage.warning { color: var(--warning-color); }
+.percentage.accent { color: var(--accent-color); }
+
+/* Progress Bars */
+.progress-bar {
+  height: 6px;
+  background-color: var(--bg-color);
+  border-radius: 3px;
   overflow: hidden;
 }
 
-th, td {
-  padding: 0.875rem 1rem;
-  text-align: left;
-  font-size: 0.925rem;
+.progress-fill {
+  height: 100%;
+  background-color: var(--brand-color);
+  border-radius: 3px;
 }
 
-/* Table Header */
-th {
-  background-color: var(--primary-light);
-  color: var(--primary);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  border-bottom: 2px solid var(--border-color);
-}
+.warning-fill { background-color: var(--warning-color); }
+.accent-fill { background-color: var(--accent-color); }
 
-/* Table Body Borders & Rows */
-td {
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-primary);
-}
+/* ==========================================================================
+   4. Responsive Layout (Single-column below 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
 
-tr:last-child td {
-  border-bottom: none;
-}
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
 
-/* Alternating Row Styling */
-tbody tr:nth-child(even) {
-  background-color: var(--table-stripe);
-}
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
 
-/* Row Hover Effect */
-tbody tr:hover {
-  background-color: #f1f5f9;
+  .search-bar {
+    flex: 1;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 20px;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+  }
+
+  .sidebar-footer {
+    display: none; /* Hide user block in mobile view for cleaner layout */
+  }
+
+  .main-content {
+    padding: 20px;
+    grid-template-columns: 1fr; /* Single column layout for cards */
+  }
 }

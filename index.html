@@ -1,12 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Budget Tracker</title>
-  
-  <!-- Google Fonts: Poppins (Headings) and Inter (Body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  
+  <title>SpendWise - Personal Finance Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">💳</span>
+        <h2>SpendWise</h2>
+      </div>
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active" aria-current="page">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">💸</span>
+          <span class="nav-text">Transactions</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">📈</span>
+          <span class="nav-text">Analytics</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-text">Budgets</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">JD</div>
+          <div class="user-info">
+            <span class="user-name">Jane Doe</span>
+            <span class="user-role">Pro Account</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-left">
+        <h1>Financial Overview</h1>
+        <p class="subtitle">Welcome back, Jane! Here's your weekly breakdown.</p>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search expenses..." aria-label="Search expenses" />
+        </div>
+        <button class="notification-btn" aria-label="Notifications">
+          🔔
+          <span class="notification-badge"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area / Cards Grid -->
+    <main class="main-content">
+      
+      <!-- Card 1: Rent & Housing -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon housing">🏠</span>
+          <span class="card-badge">Monthly</span>
+        </div>
+        <div class="card-body">
+          <h3>Housing & Rent</h3>
+          <p class="card-amount">$1,450.00</p>
+          <div class="card-meta">
+            <span class="limit">Budget: $1,500.00</span>
+            <span class="percentage positive">96% spent</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 96%;"></div>
+        </div>
+      </article>
+
+      <!-- Card 2: Food & Dining -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon food">🍕</span>
+          <span class="card-badge">Weekly</span>
+        </div>
+        <div class="card-body">
+          <h3>Food & Dining</h3>
+          <p class="card-amount">$380.50</p>
+          <div class="card-meta">
+            <span class="limit">Budget: $500.00</span>
+            <span class="percentage positive">76% spent</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 76%;"></div>
+        </div>
+      </article>
+
+      <!-- Card 3: Transportation -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon transport">🚗</span>
+          <span class="card-badge">Monthly</span>
+        </div>
+        <div class="card-body">
+          <h3>Transportation</h3>
+          <p class="card-amount">$210.00</p>
+          <div class="card-meta">
+            <span class="limit">Budget: $250.00</span>
+            <span class="percentage positive">84% spent</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 84%;"></div>
+        </div>
+      </article>
+
+      <!-- Card 4: Entertainment -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon entertainment">🎬</span>
+          <span class="card-badge">Monthly</span>
+        </div>
+        <div class="card-body">
+          <h3>Entertainment</h3>
+          <p class="card-amount">$145.20</p>
+          <div class="card-meta">
+            <span class="limit">Budget: $120.00</span>
+            <span class="percentage warning">121% spent</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill warning-fill" style="width: 100%;"></div>
+        </div>
+      </article>
+
+      <!-- Card 5: Utilities -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon utilities">⚡</span>
+          <span class="card-badge">Monthly</span>
+        </div>
+        <div class="card-body">
+          <h3>Utilities</h3>
+          <p class="card-amount">$185.00</p>
+          <div class="card-meta">
+            <span class="limit">Budget: $200.00</span>
+            <span class="percentage positive">92% spent</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 92%;"></div>
+        </div>
+      </article>
+
+      <!-- Card 6: Savings & Investments -->
+      <article class="card" tabindex="0">
+        <div class="card-header">
+          <span class="card-icon savings">🐷</span>
+          <span class="card-badge">Goal</span>
+        </div>
+        <div class="card-body">
+          <h3>Savings & Goals</h3>
+          <p class="card-amount">$850.00</p>
+          <div class="card-meta">
+            <span class="limit">Target: $1,000.00</span>
+            <span class="percentage accent">85% reached</span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill accent-fill" style="width: 85%;"></div>
+        </div>
+      </article>
+
+    </main>
+  </div>
+</body>
+</html>

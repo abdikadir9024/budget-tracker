@@ -1,45 +1,48 @@
-# Budget Tracker - Visual Design & Styling
+# SpendWise Dashboard Shell
 
-A clean, responsive, and visually accessible Budget Tracker user interface built as part of the Week 3 Visual Design Challenge. This phase focuses entirely on CSS enhancement without modifying existing HTML structure or adding JavaScript functionality.
+SpendWise is a responsive, modern personal finance dashboard layout engineered using CSS Grid, Flexbox, and CSS Custom Properties.
+
+## Overview & Architecture
+
+This repository contains the visual foundation for the SpendWise dashboard capstone project. The project is designed with a mobile-first component structure and pure CSS positioning without absolute positioning.
+
+### Features & Implementation Details
+
+#### 1. Page Layout (CSS Grid)
+* The overall grid layout is defined in `.dashboard-container` with explicit areas: `sidebar`, `header`, and `main`.
+* The grid uses a column split of `260px` for the fixed sidebar and `1fr` for fluid main content.
+
+#### 2. Flexbox Component Structure
+* **Sidebar:** Uses vertical flexbox layout (`flex-direction: column`) with `justify-content: space-between` to stick user profile information to the bottom.
+* **Header:** Uses horizontal flexbox to align title metadata on the left and utility controls (search bar, notification trigger) on the right.
+* **Dashboard Cards:** The main content container leverages `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` for automated multi-column arrangements. Each individual card internally uses Flexbox to align icons, budget limits, amounts, and progress indicators.
+
+#### 3. CSS Custom Properties (Design Tokens)
+All global color schemes, shadows, and radii are declared under `:root`:
+* `--brand-color`: Primary visual indicator (`#4f46e5`)
+* `--accent-color`: Goal tracking indicator (`#10b981`)
+* `--surface-color` & `--bg-color`: Structural contrast elements
+* `--text-primary` & `--text-secondary`: High and medium contrast text standards
+
+#### 4. Responsive Single-Column Adaptation
+* Uses `@media (max-width: 768px)` to reconfigure the grid into a single-column sequence (`header` → `sidebar` → `main`).
+* Converts navigation options into a horizontal scrolling row for compact touchscreen viewports.
+
+#### 5. Card Micro-interactions
+* Hover and keyboard focus state animations (`.card:hover, .card:focus-visible`) use transform translate (`translateY(-4px)`) and shadow elevations.
+* Transition duration is locked to `200ms` (satisfying the ≤250ms requirement).
+* Focus rings are enabled via CSS `:focus-visible` for keyboard navigation accessibility.
+
+#### 6. Dark Theme Support (Stretch Goal)
+* Implemented using `@media (prefers-color-scheme: dark)`.
+* Color variables on `:root` are dynamically remapped for dark viewports automatically without JavaScript toggling.
 
 ---
 
-## 🎨 Visual Design System
+## File Structure
 
-### 1. Color Palette
-The application utilizes a cohesive, accessible color scheme based on a professional modern blue-and-slate palette:
-- **Primary Brand Color (`#2563eb`):** Applied to the main title, section borders, button highlights, and table headers.
-- **Background Slate (`#f8fafc`):** Serves as a neutral canvas to elevate card components.
-- **Card Background (`#ffffff`):** Creates clear visual contrast for main content sections.
-- **Primary Text (`#0f172a`):** High-contrast slate color for optimal legibility.
-- **Muted Text (`#64748b`):** Used for form input labels to establish typographic hierarchy.
-
----
-
-### 2. Custom Typography
-Custom typography was implemented using **Google Fonts**:
-- **Headings (`Poppins`):** A bold, geometric sans-serif font applied to `<h1>` and `<h2>` elements to create impactful headers.
-- **Body & Inputs (`Inter`):** A neutral sans-serif font optimized for high readability across table cells, body text, form fields, and buttons.
-
----
-
-### 3. CSS Box Model Implementation
-To enhance visual organization, each core section is styled as an independent **Card Component**:
-- **Margins (`margin-bottom: 1.5rem`):** Ensures consistent vertical spacing between sections.
-- **Padding (`padding: 1.75rem`):** Creates breathing room inside container walls.
-- **Borders & Border-Radius (`12px`):** Softens rectangular sections for a modern, approachable card interface.
-- **Box Shadows:** Adds subtle elevation to separate sections visually from the page background.
-
----
-
-### 4. Table & Form Design
-- **Expense Form:** Features vertical stack layouts with prominent field labels, unified border styling, and focus-state outlines for accessibility.
-- **Expense Table:** Includes explicit cell padding, distinct header styling using the primary brand color tint, horizontal grid borders, and alternating row backgrounds (`nth-child(even)`) for enhanced scanning clarity.
-
----
-
-## 📁 Repository File Structure
 ```text
-├── index.html   # Main HTML structure (Unchanged structure + Google Fonts link)
-├── style.css    # Complete CSS design system stylesheet
-└── README.md    # Documentation file
+.
+├── index.html   # Semantic HTML5 document structure
+├── style.css    # Custom CSS Grid/Flexbox stylesheet & design tokens
+└── README.md    # Documentation and system breakdown
